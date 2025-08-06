@@ -3,103 +3,15 @@
 <div id="beautifuljekyll-search-overlay">
 
   <div id="nav-search-exit" title="Exit search">✕</div>
-  <input type="text" id="nav-search-input" placeholder="搜索文章...">
+  <input type="text" id="nav-search-input" placeholder="Search">
   <ul id="search-results-container"></ul>
   
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
   <script>
-    // 自定义搜索实现，更好地支持中文
-    class ChineseSearch {
-      constructor() {
-        this.searchInput = document.getElementById('nav-search-input');
-        this.resultsContainer = document.getElementById('search-results-container');
-        this.searchData = [];
-        this.init();
-      }
-
-      async init() {
-        try {
-          // 添加时间戳避免缓存问题
-          const timestamp = new Date().getTime();
-          const response = await fetch(`{{ site.baseurl }}/assets/data/searchcorpus.json?v=${timestamp}`);
-          this.searchData = await response.json();
-          
-          // 调试信息：显示加载的文章数量
-          console.log(`搜索数据加载成功，共 ${this.searchData.length} 篇文章`);
-          this.searchData.forEach((item, index) => {
-            console.log(`${index + 1}. ${item.title} - ${item.url}`);
-          });
-          
-          this.bindEvents();
-        } catch (error) {
-          console.error('搜索数据加载失败:', error);
-          this.resultsContainer.innerHTML = '<li>搜索功能暂时不可用，请刷新页面重试</li>';
-        }
-      }
-
-      bindEvents() {
-        this.searchInput.addEventListener('input', (e) => {
-          this.performSearch(e.target.value);
-        });
-
-        this.searchInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            document.getElementById('beautifuljekyll-search-overlay').style.display = 'none';
-            document.body.classList.remove('overflow-hidden');
-          }
-        });
-      }
-
-      performSearch(query) {
-        if (!query.trim()) {
-          this.resultsContainer.innerHTML = '';
-          return;
-        }
-
-        const results = this.searchData.filter(item => {
-          const searchText = query.toLowerCase();
-          const title = (item.title || '').toLowerCase();
-          const desc = (item.desc || '').toLowerCase();
-          const content = (item.content || '').toLowerCase();
-          const category = (item.category || '').toLowerCase();
-
-          return title.includes(searchText) || 
-                 desc.includes(searchText) || 
-                 content.includes(searchText) ||
-                 category.includes(searchText);
-        });
-
-        // 调试信息：显示搜索结果
-        console.log(`搜索 "${query}" 找到 ${results.length} 个结果`);
-        results.forEach((item, index) => {
-          console.log(`${index + 1}. ${item.title}`);
-        });
-
-        this.displayResults(results);
-      }
-
-      displayResults(results) {
-        if (results.length === 0) {
-          this.resultsContainer.innerHTML = '<li>没有找到相关文章</li>';
-          return;
-        }
-
-        const html = results.slice(0, 10).map(item => `
-          <li>
-            <a href="${item.url}">
-              <h3>${item.title}</h3>
-              <p>${item.desc}</p>
-              <small>${item.category} • ${item.date}</small>
-            </a>
-          </li>
-        `).join('');
-
-        this.resultsContainer.innerHTML = html;
-      }
-    }
-
-    // 初始化搜索
-    document.addEventListener('DOMContentLoaded', () => {
-      new ChineseSearch();
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('nav-search-input'),
+      resultsContainer: document.getElementById('search-results-container'),
+      json: '{{ site.baseurl }}/assets/data/searchcorpus.json' 
     });
   </script>
 </div>
