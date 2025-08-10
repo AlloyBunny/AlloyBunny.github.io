@@ -175,7 +175,7 @@ img {
   line-height: 1.5;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
 }
 
 .navbar-custom .navbar-brand-logo {
@@ -407,9 +407,9 @@ img {
 /* --- Footer --- */
 
 footer {
-  padding: 0.5rem 0;
+  padding: 0.1rem 0;
   border-top: 1px var(--footer-col) solid;
-  margin-top: 1rem;
+  margin-top: 0;
   font-size: 0.875rem;
   background-color: var(--footer-col);
   {% if site.footer-img %}
@@ -463,7 +463,7 @@ footer .footer-custom-content {
 
 @media (min-width: 768px) {
   footer {
-    padding: 1rem 0;
+    padding: 0.1rem 0;
   }
   footer .footer-links {
     font-size: 1.125rem;
@@ -1111,9 +1111,11 @@ pre {
 
 #nav-search-icon {
   display: inline-block;
+  font-size: 1.5rem;
 }
 #nav-search-text {
   display: none;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 1199px) {
