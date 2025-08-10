@@ -20,10 +20,11 @@ author: AlloyBunny
 ###############################################
 
 navbar-links:
-  # About Me: "aboutme"
-  # Resources:
-  #   - Beautiful Jekyll: "https://beautifuljekyll.com"
-  #   - Learn markdown: "https://www.markdowntutorial.com/"
+  关于: "aboutme"
+  找到我:
+    - Github: "https://github.com/AlloyBunny"
+    - B站: "https://space.bilibili.com/305821778"
+    - 小红书: "https://www.xiaohongshu.com/user/profile/640bede4000000000b017591"
   # Author's home: "https://deanattali.com"
 
 ################
