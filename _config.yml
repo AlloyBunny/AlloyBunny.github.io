@@ -20,7 +20,7 @@ author: AlloyBunny
 ###############################################
 
 navbar-links:
-  关于: "aboutme"
+  # 关于: "aboutme"
   找到我:
     - Github: "https://github.com/AlloyBunny"
     - B站: "https://space.bilibili.com/305821778"
