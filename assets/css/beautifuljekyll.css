@@ -413,9 +413,9 @@ img {
 /* --- Footer --- */
 
 footer {
-  padding: 0.7rem 0;
+  padding: 1.5rem 0;
   border-top: 1px var(--footer-col) solid;
-  margin-top: 1rem 0;
+  margin-top: 1.2rem;
   font-size: 0.875rem;
   background-color: var(--footer-col);
   {% if site.footer-img %}
@@ -469,7 +469,7 @@ footer .footer-custom-content {
 
 @media (min-width: 768px) {
   footer {
-    padding: 0.7rem 0;
+    padding: 1.5rem 0;
   }
   footer .footer-links {
     font-size: 1.125rem;
