@@ -10,7 +10,7 @@ tags: [经验]
 
 ### 踩过的坑
 
-1. 一开始尝试用llama-factory，跑通了官方examples中的llama3-8B-Instruct的DPO训练，也跑通了qwen3-8B，但是跑`qwen2.5-7B-Instruct`的时候遇到了[loss不下降的问题](https://github.com/hiyouga/LLaMA-Factory/issues/8981)，尝试解决没有成功。
+1. 一开始尝试用llama-factory，跑通了官方examples中的`llama3-8B-Instruct`的DPO训练，也跑通了`qwen3-8B`，但是跑`qwen2.5-7B-Instruct`的时候遇到了[loss不下降的问题](https://github.com/hiyouga/LLaMA-Factory/issues/8981)，尝试解决没有成功。
 2. 后来用unsloth，这个需要自己写代码，我太菜了，写的代码总是跑不通，失败了。
 
 ### ms-swift简介
