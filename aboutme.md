@@ -2,15 +2,13 @@
 layout: page
 title: 关于我
 ---
-​      你好，这里是**合金Bunny酱(Alloy Bunny)**，HITSZ在读硕士研究生、拿过ICPC区域金的退役ACMer、二次元爱好者、fps领域全不能选手。
+你好，这里是**合金Bunny酱(Alloy Bunny)**，HITSZ在读硕士研究生、退役ACMer、二次元爱好者、FPS领域全不能选手，欢迎来到我的赛博小窝。
 
-My name is Inigo Montoya. I have the following qualities:
-
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
-
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+- 主职业：LLM炼丹炉初阶火系魔法师、显存爆破手、用prompt指挥AI干活的赛博召唤师
+- 副职业：原神高手、马枪表演艺术家
+- 特长：写bug、生产早被做过的idea、摸鱼
+- 爱好：打游戏、看番、写代码、羽毛球、健身
+- 想做的事：多发paper，少掉头发
+- 联系方式如下，欢迎找我组队发paper/打游戏
+  - 邮箱：yxzhai1024@gmail.com
+  - Github：[@AlloyBunny](https://github.com/AlloyBunny)
