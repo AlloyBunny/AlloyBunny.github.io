@@ -1,19 +1,8 @@
 ---
 layout: page
-title: 关于我
+title: Papers
 ---
-
-  
-
-​		你好，这里是合金Bunny酱，HITSZ在读硕士研究生、拿过ICPC区域金的退役ACMer、二次元爱好者、fps领域全不能选手。
-
-My name is Inigo Montoya. I have the following qualities:
-
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
-
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### Multi-hop Question Answering under Temporal Knowledge Editing
+**Authors**: Keyuan Cheng, Gang Lin, Haoyang Fei, **Yuxuan zhai**, Lu Yu, Muhammad Asif Ali, Lijie Hu, Di Wang
+**Venue**: *Conference On Language Modeling (COLM)*, 2024
+**arXiv**: [2404.00492](https://arxiv.org/abs/2404.00492)
