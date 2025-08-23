@@ -2,10 +2,7 @@
 layout: page
 title: 关于我
 ---
-
-  
-
-​		你好，这里是合金Bunny酱，HITSZ在读硕士研究生、拿过ICPC区域金的退役ACMer、二次元爱好者、fps领域全不能选手。
+​      你好，这里是**合金Bunny酱(Alloy Bunny)**，HITSZ在读硕士研究生、拿过ICPC区域金的退役ACMer、二次元爱好者、fps领域全不能选手。
 
 My name is Inigo Montoya. I have the following qualities:
 
