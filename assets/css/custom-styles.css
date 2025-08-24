@@ -1,0 +1,26 @@
+/* 修复有序列表编号显示问题 */
+ol {
+  list-style-type: decimal;
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+
+ol ol {
+  list-style-type: lower-alpha;
+}
+
+ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* 确保列表项有正确的间距 */
+ol li {
+  margin-bottom: 0.5rem;
+}
+
+/* 修复嵌套列表的缩进 */
+ol ul,
+ul ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
