@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 用ms-swift框架进行DPO训练
+title: 用ms-swift框架进行SFT、DPO训练
 tags: [经验]
 ---
 
 ### 需求
 
-在4×4090 24GB的服务器上，对7~8B量级的LLM进行DPO训练，要求框架使用简单，支持的模型种类多。
+在4×4090 24GB的服务器上，对7~8B量级的LLM进行SFT、DPO训练，要求框架使用简单，支持的模型种类多。
 
 ### 踩过的坑
 
@@ -17,15 +17,79 @@ tags: [经验]
 
 [ms-swift](https://github.com/modelscope/ms-swift/tree/main)是魔搭社区提供的LLM/MLLM微调部署框架，支持主流的多种训练/微调方法，[支持的模型](https://swift.readthedocs.io/zh-cn/latest/Instruction/%E6%94%AF%E6%8C%81%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86.html)也很多。
 
+### 用ms-swift框架SFT训练
+
+官方Github仓库提供了[基于lora的SFT脚本](https://github.com/modelscope/ms-swift/blob/main/examples/train/lora_sft.sh)，我改了一些地方——手动指定val_dataset，以及调整上下文长度为8192（调整后需要双卡）
+
+```bash
+export NCCL_P2P_DISABLE="1" # RTX4090要加这两行
+export NCCL_IB_DISABLE="1"
+CUDA_VISIBLE_DEVICES=0,1 \
+swift sft \
+    --model /data/zhaiyuxuan/models/Qwen2.5-7B-Instruct \
+    --train_type lora \
+    --dataset "/data/zhaiyuxuan/swift/dataset/sage+/train_sft.jsonl" \
+    --val_dataset "/data/zhaiyuxuan/swift/dataset/sage+/validation_sft.jsonl" \
+    --torch_dtype bfloat16 \
+    --num_train_epochs 10 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --learning_rate 5e-5 \
+    --lora_rank 8 \
+    --lora_alpha 32 \
+    --target_modules all-linear \
+    --gradient_accumulation_steps 8 \
+    --eval_steps 50 \
+    --save_steps 50 \
+    --save_total_limit 100 \
+    --logging_steps 5 \
+    --max_length 8192 \
+    --output_dir output/sft2/Qwen2.5-7B-Instruct \
+    --warmup_ratio 0.05 \
+    --dataloader_num_workers 4 \
+    --model_author zhaiyuxuan \
+    --model_name qwen2.5-7b-Instruct-sft2 \
+    --ddp_find_unused_parameters false
+```
+
 ### 用ms-swift框架DPO训练
 
-[官方文档](https://swift.readthedocs.io/zh-cn/latest/Instruction/%E4%BA%BA%E7%B1%BB%E5%AF%B9%E9%BD%90.html#dpo)中提供了[基于lora的DPO脚本](https://github.com/modelscope/ms-swift/blob/main/examples/train/rlhf/dpo/lora.sh)，只需要24GB的单卡就能训练，刚好是一张4090。示例脚本中用的模型恰好就是`qwen2.5-7B-Instruct`，所以我几乎是直接拿过来就直接用了。
+[官方文档](https://swift.readthedocs.io/zh-cn/latest/Instruction/%E4%BA%BA%E7%B1%BB%E5%AF%B9%E9%BD%90.html#dpo)中提供了[基于lora的DPO脚本](https://github.com/modelscope/ms-swift/blob/main/examples/train/rlhf/dpo/lora.sh)，只需要24GB的单卡就能训练，刚好是一张4090。示例脚本中用的模型恰好就是`qwen2.5-7B-Instruct`，所以我几乎是直接拿过来就直接用了。以下是我的脚本
+
+```bash
+CUDA_VISIBLE_DEVICES=0 \
+swift rlhf \
+    --rlhf_type dpo \
+    --model /data/zhaiyuxuan/models/Qwen2.5-7B-Instruct-sft \
+    --train_type lora \
+    --dataset dataset/sage+/train_dpo.jsonl \
+    --val_dataset dataset/sage+/val_dpo.jsonl \
+    --torch_dtype bfloat16 \
+    --num_train_epochs 15 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --learning_rate 5e-5 \
+    --lora_rank 8 \
+    --lora_alpha 32 \
+    --target_modules all-linear \
+    --gradient_accumulation_steps 16 \
+    --eval_steps 50 \
+    --save_steps 50 \
+    --save_total_limit 50 \
+    --logging_steps 5 \
+    --max_length 8192 \
+    --output_dir output/dpo/Qwen2.5-7B-Instruct-sft \
+    --warmup_ratio 0.05 \
+    --dataloader_num_workers 4 \
+    --rpo_alpha 0.1 \
+    --dataset_num_proc 4
+```
 
 ### 自定义数据集
 
 [脚本](https://github.com/modelscope/ms-swift/blob/main/examples/train/rlhf/dpo/lora.sh)中我唯一需要修改的地方是数据集，官方文档也给出了[自定义数据集的方法](https://swift.readthedocs.io/zh-cn/latest/Customization/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E9%9B%86.html)。原文有些长，我这里讲讲我用的最简单的做法。
 
-首先将数据集整理成如下的jsonl格式（这里只展示了jsonl的一项）：
+以DPO的数据集为例，首先将数据集整理成如下的jsonl格式（这里只展示了jsonl的一项）：
 
 ```json
 {
