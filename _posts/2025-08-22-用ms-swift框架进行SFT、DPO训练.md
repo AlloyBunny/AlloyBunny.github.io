@@ -140,5 +140,9 @@ conda create -n swift python=3.10 # 官方推荐3.10
 conda activate swift
 pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124 # 官方推荐的2.7.1只有cu118和cu126，但我是cu124的，所以安装有cu124的2.6.0版本
 pip install 'ms-swift' # 安装ms-swift
+
+# 【补充】安装过程可能遇到问题，可参考以下方法解决（不保证一定有效）
+pip install typing-extensions==4.12.2 # 如果遇到typing-extensions版本不兼容，可以尝试装这个版本
+pip install sentencepiece pyarrow --only-binary :all: # 这两个包需要编译，如果编译失败，可以安装预编译版本
 ```
 
