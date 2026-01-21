@@ -8,11 +8,11 @@ tags: [手册]
 
 ### Step 1: 下载[MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html)
 
-![image-20260121205539487](C:\Users\zhaiyuxuan\AppData\Roaming\Typora\typora-user-images\image-20260121205539487.png)
+![image-20260121205539487](..\assets\img\image-20260121205539487.png)
 
 ### Step 2: 打开MobaXterm，点击“Start local terminal”
 
-![image-20260121205723922](C:\Users\zhaiyuxuan\AppData\Roaming\Typora\typora-user-images\image-20260121205723922.png)
+![image-20260121205723922](..\assets\img\image-20260121205723922.png)
 
 ### Step 3: 在终端中登录服务器并联网
 
@@ -38,7 +38,7 @@ firefox
 
 加载几秒后，会弹出火狐浏览器界面，点击“打开网络登录页面”即可进入统一身份认证页面，随后完成登录即可
 
-![image-20260121210635672](C:\Users\zhaiyuxuan\AppData\Roaming\Typora\typora-user-images\image-20260121210635672.png)
+![image-20260121210635672](..\assets\img\image-20260121210635672.png)
 
 
 
