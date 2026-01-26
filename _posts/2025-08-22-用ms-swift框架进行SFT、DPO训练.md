@@ -17,6 +17,14 @@ tags: [经验]
 
 [ms-swift](https://github.com/modelscope/ms-swift/tree/main)是魔搭社区提供的LLM/MLLM微调部署框架，支持主流的多种训练/微调方法，[支持的模型](https://swift.readthedocs.io/zh-cn/latest/Instruction/%E6%94%AF%E6%8C%81%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86.html)也很多。
 
+### 用modelscope下载模型
+
+```bash
+modelscope download \
+  --model Qwen/Qwen2.5-7B-Instruct \
+  --local_dir /data/zhaiyuxuan/models/Qwen2.5-7B-Instruct
+```
+
 ### 用ms-swift框架SFT训练
 
 官方Github仓库提供了[基于lora的SFT脚本](https://github.com/modelscope/ms-swift/blob/main/examples/train/lora_sft.sh)，我改了一些地方——手动指定val_dataset，以及调整上下文长度为8192（调整后需要双卡）
