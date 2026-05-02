@@ -226,9 +226,11 @@ a {
       display: flex;
       height: 100vh;
       position: sticky;
+      width: $sidePanelWidth;
     }
 
     & .sidebar.left {
+      left: max(0rem, calc((100vw - 1840px) / 2));
       z-index: 1;
       grid-area: grid-sidebar-left;
       flex-direction: column;
@@ -245,6 +247,7 @@ a {
     }
 
     & .sidebar.right {
+      right: max(0rem, calc((100vw - 1840px) / 2));
       grid-area: grid-sidebar-right;
       margin-right: 0;
       flex-direction: column;
@@ -285,26 +288,45 @@ a {
       grid-area: grid-center;
     }
 
+    & .center {
+      grid-area: grid-center;
+    }
+
     & footer {
       grid-area: grid-footer;
     }
 
     & .center,
     & footer {
-      max-width: 100%;
-      min-width: 100%;
+      width: $pageWidth;
+      max-width: $pageWidth;
+      min-width: 0;
       margin-left: auto;
       margin-right: auto;
       @media all and ($tablet) {
         margin-right: 0;
       }
       @media all and ($mobile) {
+        width: 100%;
+        max-width: 100%;
         margin-right: 0;
         margin-left: 0;
       }
     }
     & footer {
       margin-left: 0;
+    }
+
+    @media all and ($desktop) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "grid-header"
+        "grid-center"
+        "grid-footer";
+
+      & .sidebar {
+        position: fixed;
+      }
     }
   }
 }

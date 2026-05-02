@@ -14,9 +14,6 @@ message="${1:-Update notes: $(date '+%Y-%m-%d %H:%M')}"
 npm run check
 npx quartz build
 
-cp -R public/. .
-touch .nojekyll
-
 git add -A
 
 if git diff --cached --quiet; then
