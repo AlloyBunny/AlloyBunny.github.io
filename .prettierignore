@@ -1,3 +1,20 @@
 public
 node_modules
 .quartz-cache
+
+# Generated Quartz files copied to the repository root for GitHub Pages
+# branch-root publishing.
+404.html
+aboutme.html
+papers.html
+index.html
+index.css
+index.xml
+sitemap.xml
+postscript.js
+prescript.js
+assets/
+static/
+tags/
+手册/
+经验/

@@ -11,15 +11,18 @@ fi
 
 message="${1:-Update notes: $(date '+%Y-%m-%d %H:%M')}"
 
+npm run check
+npx quartz build
+
+cp -R public/. .
+touch .nojekyll
+
 git add -A
 
 if git diff --cached --quiet; then
   echo "No changes to publish."
   exit 0
 fi
-
-npm run check
-npx quartz build
 
 git commit -m "$message"
 git push origin master
