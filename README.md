@@ -28,3 +28,5 @@ npx quartz build --serve
 ## Deployment
 
 Pushing to `master` runs `.github/workflows/deploy.yml`, builds Quartz into `public/`, and deploys it with GitHub Pages Actions. In GitHub repository settings, Pages must use `GitHub Actions` as the source.
+
+The generated HTML is not committed. `npm run publish` builds into a temporary directory only to verify the site before pushing; GitHub Actions generates the deployed `public/` output in the cloud.

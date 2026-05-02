@@ -230,7 +230,7 @@ a {
     }
 
     & .sidebar.left {
-      left: max(0rem, calc((100vw - 1840px) / 2));
+      left: $sidePanelInset;
       z-index: 1;
       grid-area: grid-sidebar-left;
       flex-direction: column;
@@ -247,7 +247,7 @@ a {
     }
 
     & .sidebar.right {
-      right: max(0rem, calc((100vw - 1840px) / 2));
+      right: $sidePanelInset;
       grid-area: grid-sidebar-right;
       margin-right: 0;
       flex-direction: column;
