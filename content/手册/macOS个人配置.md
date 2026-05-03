@@ -17,15 +17,15 @@ tags:
 
 ### Rectangle
 
-像windows一样的分屏窗口吸附
+像windows一样的分屏窗口吸附，f8绑定窗口最大化
 
-### Qspace
-
-更好的Finder，配合自定义的“自动操作”，可以实现类似windows的“用cursor打开当前文件夹”之类的功能
-
-### Bartender 5
+### Ice
 
 隐藏部分菜单栏，防止显示不全
+
+### Qmenu
+
+实现在访达中右键新建文件、右键在终端/cursor中打开当前文件夹
 
 ## 实用工具类
 
@@ -39,9 +39,13 @@ search files功能绑定到F4
 
 实现剪切板功能，绑定到command+e
 
+### Obsidian
+
+用来写笔记很好用
+
 ### Pixpin
 
-F1绑定截图，F8绑定贴图
+F1绑定截图，F2绑定贴图
 
 ### 豆包输入法
 
@@ -65,7 +69,7 @@ ghostty, zellij, yazi, micro
 2. `u/i/n/m` 分别映射为 `←/→/↑/↓`
 3. `j/k/l/h` 分别映射为 `Command+←`、`Command+→`、`Command+Shift+←`、`Command+Shift+→`
 4. `;/9/0` 分别映射为 `:`、`(`、`)`
-5. `Backspace` 映射为 `Delete`
+5. `Backspace` 映射为 `Delete`(删除右边字符)
 
 全局映射（不需要按住Caps）：
 
