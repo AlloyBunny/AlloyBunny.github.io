@@ -17,7 +17,7 @@ tags:
 
 ### Rectangle
 
-像windows一样的分屏窗口吸附，f8绑定窗口最大化
+像windows一样的分屏窗口吸附，f2绑定窗口最大化
 
 ### Ice
 
@@ -37,7 +37,7 @@ search files功能绑定到F4
 
 ### Maccy
 
-实现剪切板功能，绑定到command+e
+实现剪切板功能，绑定到option+v
 
 ### Obsidian
 
@@ -45,7 +45,7 @@ search files功能绑定到F4
 
 ### Pixpin
 
-F1绑定截图，F2绑定贴图
+F5绑定截图，F6绑定贴图
 
 ### 豆包输入法
 
@@ -75,7 +75,7 @@ ghostty, zellij, yazi, micro
 
 1. `Home/End` 映射为 `Command+← / Command+→`
 
-2. `F9` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
+2. `F1` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
 
    安装：
 
