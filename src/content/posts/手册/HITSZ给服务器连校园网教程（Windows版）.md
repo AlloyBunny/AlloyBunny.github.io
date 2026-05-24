@@ -3,6 +3,8 @@ title: HITSZ给服务器连校园网教程（Windows版）
 published: 2026-01-21
 tags:
   - linux
+  - 校园网
+  - HITSZ
 draft: false
 ---
 

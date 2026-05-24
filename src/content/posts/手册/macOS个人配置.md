@@ -95,7 +95,7 @@ open -a /Applications/Karabiner-Elements.app
 
 配置文件内容：
 
-```bash
+```json
 {
     "profiles": [
         {
@@ -388,6 +388,29 @@ open -a /Applications/Karabiner-Elements.app
                             },
                             {
                                 "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
                                     "key_code": "home",
                                     "modifiers": {
                                         "optional": ["any"]
@@ -436,7 +459,7 @@ open -a /Applications/Karabiner-Elements.app
                             },
                             {
                                 "from": {
-                                    "key_code": "f9",
+                                    "key_code": "f1",
                                     "modifiers": {
                                         "optional": ["any"]
                                     }
@@ -453,6 +476,48 @@ open -a /Applications/Karabiner-Elements.app
                     }
                 ]
             },
+            "simple_modifications": [
+                {
+                    "from": {
+                        "key_code": "left_command"
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_control"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "left_control"
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_command"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "right_command"
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_control"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "right_control"
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_command"
+                        }
+                    ]
+                }
+            ],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": {
@@ -462,6 +527,7 @@ open -a /Applications/Karabiner-Elements.app
         }
     ]
 }
+
 ```
 
 ### 终端美化
