@@ -58,7 +58,7 @@ export const navBarConfig: NavBarConfig = {
 			url: "/friends/",
 		},
 		{
-			name: "Paper",
+			name: "Papers",
 			url: "/papers/",
 		},
 		LinkPreset.About,

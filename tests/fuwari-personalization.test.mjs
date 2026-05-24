@@ -42,7 +42,7 @@ test("navigation keeps archive, friends, papers, and about links", async () => {
 	assert.match(config, /LinkPreset\.Home/);
 	assert.match(config, /LinkPreset\.Archive/);
 	assert.match(config, /name:\s*"友链"[\s\S]*url:\s*"\/friends\/"/);
-	assert.match(config, /name:\s*"Paper"[\s\S]*url:\s*"\/papers\/"/);
+	assert.match(config, /name:\s*"Papers"[\s\S]*url:\s*"\/papers\/"/);
 	assert.match(config, /LinkPreset\.About/);
 });
 
@@ -84,7 +84,12 @@ test("friends and papers pages are available", async () => {
 
 	assert.match(friendsPage, /getEntry\("spec", "friends"\)/);
 	assert.match(papersPage, /getEntry\("spec", "papers"\)/);
+	assert.match(papersPage, /<MainGridLayout title="Papers" description="Papers">/);
 	assert.match(papersContent, /Multi-hop Question Answering/);
+	assert.match(
+		papersContent,
+		/\*\*Paper\*\*: \[OpenReview\]\(https:\/\/openreview\.net\/forum\?id=Nd950RAcCW\)/,
+	);
 });
 
 test("publish tooling avoids local and generated files", async () => {
