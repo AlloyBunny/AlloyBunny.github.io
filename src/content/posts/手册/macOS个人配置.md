@@ -1,0 +1,471 @@
+---
+title: "macOS个人配置"
+published: 2026-04-12
+tags: ["手册"]
+category: "手册"
+draft: false
+---
+
+## 体验优化类
+
+### LinearMouse
+
+优化鼠标行为：反向滚轮、线性滚轮、滚轮滚动行数设置、线性指针移动
+
+### DockDoor
+
+像windows一样的程序坞窗口预览、Alt+Tab切屏。
+
+### Rectangle
+
+像windows一样的分屏窗口吸附，f2绑定窗口最大化
+
+### Ice
+
+隐藏部分菜单栏，防止显示不全
+
+### Qmenu
+
+实现在访达中右键新建文件、右键在终端/cursor中打开当前文件夹
+
+## 实用工具类
+
+### Raycast
+
+快捷键设置成F3，装“ScreenOCR”插件（设置为F7）
+
+search files功能绑定到F4
+
+### Maccy
+
+实现剪切板功能，绑定到option+v
+
+### Obsidian
+
+用来写笔记很好用
+
+### Pixpin
+
+F5绑定截图，F6绑定贴图
+
+### 豆包输入法
+
+截止2026.04.12，该输入法还是内测版本，google上能找到。它的语音输入功能完全免费，且延迟非常低，功能很强大，非常推荐。
+
+## 终端工具类
+
+以下工具基本是macOS和Linux通用的。不做过多介绍，具体功能可自行了解。
+
+ghostty, zellij, yazi, micro
+
+## 深度定制类
+
+### Karabiner-Elements
+
+深度定制按键映射，我目前分成两组：
+
+按住 Caps 时：
+
+1. 默认等效于按住 `Command`
+2. `u/i/n/m` 分别映射为 `←/→/↑/↓`
+3. `j/k/l/h` 分别映射为 `Command+←`、`Command+→`、`Command+Shift+←`、`Command+Shift+→`
+4. `;/9/0` 分别映射为 `:`、`(`、`)`
+5. `Backspace` 映射为 `Delete`(删除右边字符)
+
+全局映射（不需要按住Caps）：
+
+1. `Home/End` 映射为 `Command+← / Command+→`
+
+2. `F1` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
+
+   安装：
+
+```bash
+brew install --cask karabiner-elements
+open -a /Applications/Karabiner-Elements.app
+```
+
+第一次打开后，按系统提示把权限授权完。
+
+配置文件位置：
+
+```text
+~/.config/karabiner/karabiner.json
+```
+
+配置文件内容：
+
+```bash
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 250,
+                    "basic.to_if_held_down_threshold_milliseconds": 120
+                },
+                "rules": [
+                    {
+                        "description": "Caps Lock as command with navigation overrides",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "caps_nav",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_command"
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "vk_none" }],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "caps_nav",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "semicolon",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "9",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "0",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [{ "key_code": "delete_forward" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f9",
+                                    "modifiers": {
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "keyboard_type_v2": "ansi"
+            }
+        }
+    ]
+}
+```
+
+### 终端美化
+
+这部分我是参考这个仓库来做的配置：<https://github.com/lewislulu/terminal-setup>。
+
+实现了更清晰的命令行外观和更顺手的终端交互体验，shell用的zsh，没有换fish

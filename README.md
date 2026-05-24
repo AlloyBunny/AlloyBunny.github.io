@@ -1,32 +1,46 @@
 # AlloyBunny.github.io
 
-This site is built with [Quartz 4](https://quartz.jzhao.xyz/) and published from the Markdown files in `content/`.
+Personal blog built with [Astro](https://astro.build/) and the
+[Fuwari](https://github.com/saicaca/fuwari) template.
 
-## Daily workflow
+## Writing
 
-Open `content/` as an Obsidian vault, write Markdown notes there, then commit and push.
+Write posts as Markdown files in `src/content/posts/`.
 
-For the shortest publish path, run:
+The frontmatter format is:
 
-```bash
-npm run publish -- "Update notes"
+```yaml
+---
+title: My Post
+published: 2026-05-24
+tags: ["手册"]
+category: "手册"
+draft: false
+---
 ```
 
-If you omit the message, the script creates one from the current timestamp:
-
-```bash
-npm run publish
-```
-
-## Local preview
+## Local Development
 
 ```bash
 npm ci
-npx quartz build --serve
+npm run dev
 ```
 
-## Deployment
+## Verify
 
-Pushing to `master` runs `.github/workflows/deploy.yml`, builds Quartz into `public/`, and deploys it with GitHub Pages Actions. In GitHub repository settings, Pages must use `GitHub Actions` as the source.
+```bash
+make verify
+```
 
-The generated HTML is not committed. `npm run publish` builds into a temporary directory only to verify the site before pushing; GitHub Actions generates the deployed `public/` output in the cloud.
+This regenerates favicons from `src/assets/images/avatar.jpeg`, then runs tests,
+Astro check, and the production build.
+
+## Publish
+
+```bash
+make publish MSG="Update blog"
+```
+
+This runs verification, stages non-ignored changes, commits them, and pushes to
+`origin master`. GitHub Actions deploys the generated `dist/` output to GitHub
+Pages.

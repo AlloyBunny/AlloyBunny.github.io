@@ -1,4 +1,4 @@
-name: Deploy Quartz site to GitHub Pages
+name: Deploy Astro site to GitHub Pages
 
 on:
   push:
@@ -33,8 +33,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Quartz
-        run: npx quartz build
+      - name: Build Astro
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -42,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: public
+          path: dist
 
   deploy:
     needs: build
