@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { test } from "node:test";
 
 const configPath = new URL("../src/config.ts", import.meta.url);
@@ -13,6 +13,11 @@ const makefilePath = new URL("../Makefile", import.meta.url);
 const gitignorePath = new URL("../.gitignore", import.meta.url);
 const faviconScriptPath = new URL(
 	"../scripts/generate-favicons.mjs",
+	import.meta.url,
+);
+const publicFaviconPath = new URL("../public/favicon.ico", import.meta.url);
+const publicAvatarCopyPath = new URL(
+	"../public/favicon/avatar.jpeg",
 	import.meta.url,
 );
 
@@ -65,8 +70,9 @@ test("avatar is used as the favicon", async () => {
 
 	assert.match(config, /src:\s*"\/favicon\/favicon-32\.png"/);
 	assert.match(config, /src:\s*"\/favicon\/favicon-128\.png"/);
-	assert.match(config, /src:\s*"\/favicon\/apple-touch-icon\.png"/);
+	assert.match(config, /src:\s*"\/favicon\/favicon-180\.png"/);
 	assert.match(config, /src:\s*"\/favicon\/favicon-192\.png"/);
+	assert.doesNotMatch(config, /apple-touch-icon/);
 });
 
 test("friends and papers pages are available", async () => {
@@ -103,7 +109,15 @@ test("favicon generation script creates avatar icons", async () => {
 	const script = await readFile(faviconScriptPath, "utf8");
 
 	assert.match(script, /src\/assets\/images\/avatar\.jpeg/);
+	assert.match(script, /public\/favicon\.ico/);
 	assert.match(script, /favicon-32\.png/);
-	assert.match(script, /apple-touch-icon\.png/);
+	assert.match(script, /favicon-180\.png/);
 	assert.match(script, /favicon-192\.png/);
+	assert.doesNotMatch(script, /copyFile/);
+	assert.doesNotMatch(script, /\{\s*output:[^}]*apple-touch-icon\.png/);
+});
+
+test("generated favicon assets do not expose an extra avatar copy", async () => {
+	await access(publicFaviconPath);
+	await assert.rejects(access(publicAvatarCopyPath));
 });

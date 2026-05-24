@@ -2,7 +2,7 @@
 title: "HITSZ给服务器连校园网教程（Windows版）"
 published: 2026-01-21
 tags: ["手册"]
-category: "手册"
+
 draft: false
 ---
 

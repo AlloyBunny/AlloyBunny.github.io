@@ -2,7 +2,6 @@
 title: "用ms-swift框架进行SFT、DPO训练"
 published: 2025-08-22
 tags: ["经验"]
-category: "经验"
 draft: false
 ---
 

@@ -2,7 +2,6 @@
 title: "linux服务器配置手册"
 published: 2025-08-07
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 

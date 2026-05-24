@@ -2,7 +2,6 @@
 title: "macbook爆音问题解决"
 published: 2026-04-22
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 

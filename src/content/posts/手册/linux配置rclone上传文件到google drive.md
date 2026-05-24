@@ -2,7 +2,6 @@
 title: "linux配置rclone上传文件到google drive"
 published: 2026-01-27
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 

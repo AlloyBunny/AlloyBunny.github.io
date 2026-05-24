@@ -2,7 +2,6 @@
 title: "macOS个人配置"
 published: 2026-04-12
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 

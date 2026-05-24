@@ -2,7 +2,6 @@
 title: "tmux常用命令"
 published: 2025-09-09
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 

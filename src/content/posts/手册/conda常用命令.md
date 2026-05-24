@@ -2,7 +2,6 @@
 title: "conda常用命令"
 published: 2025-08-07
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 

@@ -39,7 +39,7 @@ export const siteConfig: SiteConfig = {
 			sizes: "128x128",
 		},
 		{
-			src: "/favicon/apple-touch-icon.png",
+			src: "/favicon/favicon-180.png",
 			sizes: "180x180",
 		},
 		{

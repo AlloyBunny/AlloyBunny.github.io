@@ -2,7 +2,6 @@
 title: ".md转.pdf的自动化方案"
 published: 2025-08-10
 tags: ["技术"]
-category: "技术"
 draft: false
 ---
 

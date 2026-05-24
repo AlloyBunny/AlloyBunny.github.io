@@ -2,7 +2,6 @@
 title: "linux上的一些零碎的注意事项"
 published: 2025-08-08
 tags: ["手册"]
-category: "手册"
 draft: false
 ---
 
