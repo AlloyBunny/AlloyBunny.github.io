@@ -1,7 +1,8 @@
 ---
-title: "conda常用命令"
+title: conda常用命令
 published: 2025-08-07
-tags: ["手册"]
+tags:
+  - 常用
 draft: false
 ---
 

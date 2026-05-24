@@ -1,7 +1,8 @@
 ---
-title: "macOS个人配置"
+title: macOS个人配置
 published: 2026-04-12
-tags: ["手册"]
+tags:
+  - macbook
 draft: false
 ---
 
