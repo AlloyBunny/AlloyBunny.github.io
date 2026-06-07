@@ -72,7 +72,7 @@ $$
 
 ## 其他的变种KL散度
 
-1. **JS 散度： **
+1. **JS 散度：**
 
    把Forward和Reverse均衡一下，$JS(P\|Q)=\frac{1}{2}KL(P\|M)+\frac{1}{2}KL(Q\|M)$
 
