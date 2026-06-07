@@ -44,7 +44,7 @@ OPD的loss是：$\mathcal{L}_{OPD}=\mathbb{E}_{x\sim\mathcal{D},y\sim\pi_\theta}
 
 ## OPD如何解决训推不一致
 
-OPD 的核心思想是：不要只在固定的数据轨迹上蒸馏，而是让 student 当前策略自己生成：\[\hat{y}\sim \pi_\theta(\cdot|x)\]。于是训练状态变成：\[\hat{s}_t=(x,\hat{y}_{<t})\]，也就是 student 自己真实会走到的状态。然后在这些状态上，让 teacher 给出 next-token distribution：$\pi_T(\cdot|\hat{s}_t)$，用于指导蒸馏训练。
+OPD 的核心思想是：不要只在固定的数据轨迹上蒸馏，而是让 student 当前策略自己生成：$\hat{y}\sim \pi_\theta(\cdot|x)$。于是训练状态变成：$hat{s}_t=(x,\hat{y}_{<t})$，也就是 student 自己真实会走到的状态。然后在这些状态上，让 teacher 给出 next-token distribution：$\pi_T(\cdot|\hat{s}_t)$，用于指导蒸馏训练。
 
 # 附录
 
@@ -72,11 +72,13 @@ $$
 
 ## 其他的变种KL散度
 
-1. **JS 散度：**把Forward和Reverse均衡一下
+1. **JS 散度： **
 
-   $JS(P\|Q)=\frac{1}{2}KL(P\|M)+\frac{1}{2}KL(Q\|M)$
+   把Forward和Reverse均衡一下，$JS(P\|Q)=\frac{1}{2}KL(P\|M)+\frac{1}{2}KL(Q\|M)$
 
-2. **Alpha散度：**思想类似JS散度，但可以通过参数$\alpha$调整”更偏向Forward还是Reverse
+2. **Alpha散度：**
+
+   思想类似JS散度，但可以通过参数$\alpha$调整”更偏向Forward还是Reverse
 
 3. **Skew KL散度：**
 
