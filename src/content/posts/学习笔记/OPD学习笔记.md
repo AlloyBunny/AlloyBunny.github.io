@@ -74,7 +74,7 @@ $$
 
 1. **JS 散度：**
 
-   把Forward和Reverse均衡一下，$JS(P\|Q)=\frac{1}{2}KL(P\|M)+\frac{1}{2}KL(Q\|M)$
+   把Forward和Reverse均衡一下，$JS(P\|Q)=\frac{1}{2}KL(P\|M)+\frac{1}{2}KL(Q\|M)$，其中$M=\frac12(P+Q)$
 
 2. **Alpha散度：**
 
