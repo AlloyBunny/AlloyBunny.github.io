@@ -67,7 +67,8 @@ $$
    $D_{KL}(\pi_\theta\|\pi_T)$，student在前，teacher在后。它强调“teacher 给到低概率的地方，student 必须都给低概率”。mode-seeking、准确性
 
 > Forward KL 适合蒸馏，适合“学 teacher”，因为它要求 student 覆盖 teacher 认为高概率的输出。OPD 是一种在线蒸馏技术，所以用它。
->  Reverse KL 适合 RL 里的 policy regularization。它不会要求新策略保留 reference 的所有模式，而是主要限制新策略不要把概率放到 reference 几乎不支持的区域。因此它允许模型根据 reward 把概率从低 reward 但原本合理的输出，转移到高 reward 且 reference 也支持的输出上。
+>
+> Reverse KL 适合 RL 里的 policy regularization。它不会要求新策略保留 reference 的所有模式，而是主要限制新策略不要把概率放到 reference 几乎不支持的区域。因此它允许模型根据 reward 把概率从低 reward 但原本合理的输出，转移到高 reward 且 reference 也支持的输出上。
 
 ## 其他的变种KL散度
 
