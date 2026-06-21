@@ -74,6 +74,16 @@ $$
 $$
 整合每个维度块的结果，就能得到上一节的$\mathrm{score}=\frac{Q_p^\top(R_{q-p}K_q)}{\sqrt{d}}$。
 
+## 【补充】另一种理解RoPE的角度
+
+令一个配对为$\mathbf{x}=\begin{pmatrix}a\\b\end{pmatrix}$，对应前面讲到的$\begin{pmatrix}Q_{p,2i}\\Q_{p,2i+1}\end{pmatrix}$。记旋转矩阵$R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$，$I=\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$。
+
+对$\mathbf{x}$施加$\theta$度的旋转，本质是$R(\theta)\mathbf{x}=\cos\theta\begin{pmatrix}1&0\\0&1\end{pmatrix}\mathbf{x}+\sin\theta\begin{pmatrix}0&-1\\1&0\end{pmatrix}\mathbf{x}=\cos\theta(I\mathbf{x})+\sin\theta(J\mathbf{x})$，
+
+我们把$J$这种变换记作$\text{rotate half}$，就得到另一种旋转方法：$R(\theta)\mathbf{x} = \mathbf{x}\cos\theta+(\text{rotate half}(\mathbf{x}))\sin\theta $。这种方法在工程实现中能更方便写。
+
+MiniMind就是用的这种旋转方法，它的配对不是按相邻的 $[(x_0, x_1), (x_2, x_3) ...]$ ，而是按$[(x_0,x_{D/2}), (x_1,x_{D/2+1}), ...]$，然后$\text{rotate half}(x)$是$[-x_{D/2}, -x_{D/2+1},...,x_0, x_1,...]$，比如，对于$x = [a, b, c, d, e, f]$，有$\text{rotate half}(x) = [-d, -e, -f, a, b, c]$。
+
 # YaRN（Yet another RoPE extension）
 
 **注：YaRN的完整代码很长，有大量工程优化，没有必要全部搞懂，只需要大概理解：（1）它解决什么问题；（2）方法大致思路。**
