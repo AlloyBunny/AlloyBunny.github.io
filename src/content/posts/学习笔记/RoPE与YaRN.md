@@ -8,6 +8,7 @@ tags:
 draft: false
 ---
 
+
 # RoPE (Rotary Position Embedding, 旋转位置编码)
 
 这是目前LLM最常用的位置编码，它编码token间的相对位置信息，作用是将位置信息注入 $Q$/$K$ 的内积，使 attention score 显式依赖 token 的相对位置。RePE只做乘性旋转变换，比起之前做加法操作的位置编码，它不容易破坏语义。
