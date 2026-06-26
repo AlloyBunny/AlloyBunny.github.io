@@ -1,6 +1,6 @@
 ---
 title: Adam和AdamW
-published: 2026-06-25
+published: 2026-06-24
 tags:
   - LLM
   - 优化器
