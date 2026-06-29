@@ -9,9 +9,7 @@ draft: false
 参考视频：[A Visual Guide to Mixture of Experts (MoE) in LLMs](https://www.youtube.com/watch?v=sOPDGQjFcuM)
 
 MoE的结构图如下所示：
-
-<img src="../../../assets/images/PixPin_2026-06-29_17-03-09.webp" alt="image-20260121205539487" style="zoom:50%;" />
-
+![image-20260121205539487](../../../assets/images/PixPin_2026-06-29_17-03-09.webp)
 # 结构讲解
 
 MoE架构的LLM，其实就是把Dense Model里Attention后面的FFN换成MoE层。MoE层有两部分：Router和Exports，Router=Linear + Top-k gating + Softmax，Exports就是很多个FFN。
