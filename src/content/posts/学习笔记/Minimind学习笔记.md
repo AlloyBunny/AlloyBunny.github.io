@@ -21,9 +21,3 @@ draft: true
   [飞天闪客](https://space.bilibili.com/325864133)
 
   [祖安ADAS](https://www.bilibili.com/video/BV1aXpfzhEeW/?vd_source=4870063f04ee1968e8d1cf61c019a352)
-
-
-
-老师，我们下午面试许伟琪同学，以下是评价：
-
-许同学缺乏科研相关经历，科研基础知识比较薄弱，在面试中没能正确回答一些简单知识问题，对自己的项目讲解也不太清楚，语言组织和逻辑表达不够分明。
