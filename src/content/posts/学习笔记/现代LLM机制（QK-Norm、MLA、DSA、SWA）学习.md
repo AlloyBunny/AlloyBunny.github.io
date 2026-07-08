@@ -9,6 +9,7 @@ draft: false
 
 - [【2026】架构密码？开年模型架构解读与机制科普：SWA、DSA、DeltaNet](https://www.bilibili.com/video/BV1axcQznEQK)
 - [DeepSeek-v2 MLA 原理讲解](https://www.bilibili.com/video/BV1BYXRYWEMj)
+- [The Big LLM Architecture Comparison](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)
 
 # QK-Norm（Minimax的技术）
 
