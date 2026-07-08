@@ -68,7 +68,9 @@ $$
 
 动机：Attention计算太慢了，尤其是推理的时候，如果上下文长度是$n$，那么每个next token prediction都是$O(n)$的，总复杂度是$O(n^2)$，我们想加快它。
 
-做法：提出一个$Indexer(q_i,k_j)$，筛选$m$个k（$m\ll n$)，Attention里只计算$m$个$q_i k_j^T$，这样总的时间复杂度就降低到$O(mn)$了。
+做法：提出一个$I^t=\mathrm{Indexer}(q_t,K)$，筛选$m$个k（$m\ll n$)，Attention里只计算$m$个$q_i k_j^T$，这样总的时间复杂度就降低到$O(mn)$了。
+
+其中$I^t$是由$t$个$I^{t,s}=\sum_{j=1}^{n_h}w_t\operatorname{ReLU}(q_{t,j} k_{s,j}^T)$组成的list，这里的$n_h$是num of heads。
 
 这个思想很像搜索系统里的**召回→排序**，是一种先粗筛，再精排的想法。
 
