@@ -22,6 +22,12 @@ SFT的loss是：$\mathcal{L}_{SFT}=\mathbb{E}_{x,y\sim D}\left[-\sum_t\log\pi_\t
 
 如果把SFT看作一种蒸馏，那么它对应着 $\pi_T(\cdot|x,y_{<t})$总是one-hot分布的特殊情况。代入公式就会发现loss公式也符合这条规律。
 
+具体来说，由于$KL(\pi_T||\pi_\theta)=H(\pi_T,\pi_\theta)-H(\pi_T)$，而$-H(\pi_T)$和参数无关，所以：
+$$
+\mathcal{L}_{KD}=\mathbb{E}_{x,y\sim D}\left[\sum_tH(\pi_T(\cdot|x,y_{<t}),\pi_\theta(\cdot|x,y_{<t}))\right]=\mathbb{E}_{x,y\sim D}\left[-\sum_t\sum_v\pi_T(v|x,y_{<t})\log\pi_\theta(v|x,y_{<t})\right]
+$$
+其中，$H(p,q)=-\sum p(x)\log q(x)$叫做交叉熵，表示“分布q和分布p的差别有多大”。
+
 ## SFT和蒸馏的数据来自哪里
 
 SFT的数据通常来自人类标注/强模型生成后筛选等高质量数据。
