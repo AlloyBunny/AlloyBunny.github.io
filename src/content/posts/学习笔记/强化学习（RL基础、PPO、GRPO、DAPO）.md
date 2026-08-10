@@ -208,7 +208,7 @@ R_{\mathrm{length}}(y)=\begin{cases}0,&|y|\leq L_{\mathrm{max}}-L_{\mathrm{cache
 $$
 然后最终的奖励是$R(y) = R(y)+R_{\mathrm{length}}(y)$，即在原本奖励基础上额外加入一个长度惩罚。
 
-其中$L_{\mathrm{max}}$是最长长度，超过它输出就会被截断，并且奖励直接-1；$L_{\mathrm{cache}}$是一个“缓冲区”，如果长度超过$L_{\mathrm{max}}-L_{\mathrm{cache}$，也会被惩罚。
+其中$L_{\mathrm{max}}$是最长长度，超过它输出就会被截断，并且奖励直接-1；$L_{\mathrm{cache}}$是一个“缓冲区”，如果长度超过$L_{\mathrm{max}}-L_{\mathrm{cache}}$，也会被惩罚。
 
 
 
