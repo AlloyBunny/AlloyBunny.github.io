@@ -32,7 +32,7 @@ P(S_{t+1}|S_t)=P(S_{t+1}|S_t,S_{t-1},S_{t-2},...S_0)
 $$
 RL的目的是训练让Agent能够在一个轨迹里拿到尽可能高的累积奖励，即最大化回报$G_t$：
 $$
-G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2R_{t+3}+...=\sum_{k=0}^\infty\gamma^kR_{t+k+1}\quad
+G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2R_{t+3}+...=\sum_{k=0}^\infty\gamma^kR_{t+k+1}
 $$
 
 ## 价值函数
@@ -45,7 +45,7 @@ $V_\pi(s)$能够衡量状态$s$对于策略$\pi$来说有多好。可以发现�
 
 定义**最优状态价值函数**，用来表示从状态$s$出发，一直按照最优策略来执行，可以获得的期望回报：
 $$
-V_*(s)=\max_\pi V_\pi(s)V_*(s)=\max_\pi V_\pi(s)
+V_*(s)=\max_\pi V_\pi(s)
 $$
 定义**动作价值函数**，用来表示从状态$s$出发，并做出动作$a$，然后按照策略$\pi$来执行，可以获得的期望回报。
 $$
@@ -53,24 +53,22 @@ Q_\pi(s,a)=E_\pi[G_t|S_t=s,A_t=a]
 $$
 定义**最优动作价值函数**，用来表示从状态$s$出发，并做出动作$a$，然后按照最优策略来执行，可以获得的期望回报。
 $$
-Q_*(s,a)=\max_\pi Q_\pi(s,a)Q_*(s,a)=\max_\pi Q_\pi(s,a)Q_*(s,a)=\max_\pi Q_\pi(s,a)Q_*(s,a)=\max_\pi Q_\pi(s,a)
+Q_*(s,a)=\max_\pi Q_\pi(s,a)
 $$
 
 ## 贝尔曼方程
 
-贝尔曼方程的思想是，$当前步的价值=即时奖励+\gamma\times 下一步的价值$。
-
-**状态价值函数的贝尔曼期望方程**：
+由$G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2R_{t+3}+...=\sum_{k=0}^\infty\gamma^kR_{t+k+1}$，以及$V_\pi(s)=E_\pi[G_t|S_t=s]$，可以推导出**状态价值函数的贝尔曼期望方程**：
 $$
-V_{\pi}(s)=E_{\pi}[R_{t+1}+\gamma V_{\pi}(S_{t+1})|S_{t}=s]=\sum_a\left\{\pi(a|s)\left[r(s,a)+\sum_{s^{\prime}}\left[p(s^{\prime}|s,a)\gamma V_\pi(s^{\prime})\right]\right]\right\}
+V_{\pi}(s)=E_{\pi}[R_{t+1}+\gamma V_{\pi}(S_{t+1})|S_{t}=s]
 $$
-**动作价值函数的贝尔曼期望方程**：
+由$G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2R_{t+3}+...=\sum_{k=0}^\infty\gamma^kR_{t+k+1}$，以及$Q_\pi(s,a)=E_\pi[G_t|S_t=s,A_t=a]$，可以推导出**动作价值函数的贝尔曼期望方程**：
 $$
-Q_{\pi}(s,a)=E_{\pi}[R_{t+1}+\gamma Q_{\pi}(S_{t+1},A_{t+1})|S_{t}=s,A_{t}=a]=r(s,a)+\gamma\sum_{s^{\prime}}\left\{p(s^{\prime}|s,a)\sum_{a^{\prime}}[\pi(a^{\prime}|s^{\prime})Q_{\pi}(s^{\prime},a^{\prime})]\right\}
+Q_{\pi}(s,a)=E_{\pi}[R_{t+1}+\gamma Q_{\pi}(S_{t+1},A_{t+1})|S_{t}=s,A_{t}=a]
 $$
-上面俩方程，主要需要理解第一步的定义，第二步展开计算的结果不太重要。
-
 按照上一小节里取max的操作，也可以算出对应的两个**最优状态/动作价值函数贝尔曼最优方程**，这里不展开。
+
+总之，贝尔曼方程的思想是：$\text{当前步的价值}=\text{即时奖励}+γ×\text{下一步的价值}$。
 
 ## 基于价值和基于策略的方法
 
