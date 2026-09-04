@@ -10,11 +10,11 @@ draft: false
 
 ### LinearMouse
 
-优化鼠标行为：反向滚轮、线性滚轮、滚轮滚动行数设置、线性指针移动
+优化鼠标行为：反向滚轮、线性滚轮、滚轮滚动行数设置、线性指针移动、中间锚点自动滚动
 
-### DockDoor
+### AltTab
 
-像windows一样的程序坞窗口预览、Alt+Tab切屏。
+类似windows的Alt+Tab切屏
 
 ### Rectangle
 
@@ -32,9 +32,13 @@ draft: false
 
 ### Raycast
 
-快捷键设置成F3，装“ScreenOCR”插件（设置为F7）
+快捷键设置成F3
 
 search files功能绑定到F4
+
+### Bob
+
+用来做OCR，绑定到F7
 
 ### Maccy
 
@@ -64,15 +68,14 @@ ghostty, zellij, yazi, micro
 
 深度定制按键映射：
 
-1. 全局交换ctrl和command
-2. Caps+`u/i/n/m`分别映射为 `←/→/↑/↓`
-3. Caps+`u/i/n/m` 分别映射为 `←/→/↑/↓`
-4. Caps+`j/k/l/h` 分别映射为 `Command+←`、`Command+→`、`Command+Shift+←`、`Command+Shift+→`
-5. Caps+`;/9/0` 分别映射为 `:`、`(`、`)`
-6. Caps+`Backspace` 映射为 `Delete`(删除右边字符)
-7. `Home/End` 映射为 `Command+← / Command+→``
-8. ``F1` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
-9. 额外地，对于外接键盘，交换win和alt，让它和MAC的默认键盘位置相同
+1. Caps+`u/i/n/m`分别映射为 `←/→/↑/↓`
+2. Caps+`u/i/n/m` 分别映射为 `←/→/↑/↓`
+3. Caps+`j/k/l/h` 分别映射为 `command+←`、`command+→`、`command+Shift+←`、`command+Shift+→`
+4. Caps+`;/9/0` 分别映射为 `:`、`(`、`)`
+5. Caps+`Backspace` 映射为 `Delete`(删除右边字符)
+6. `Home/End` 映射为 `Command+← / Command+→``
+7. ``F1` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
+8. 额外地，对于外接键盘，`ctrl/win/alt`映射为`command/option/ctrl`
 
 安装：
 
@@ -417,67 +420,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "modifiers": ["left_command"]
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Swap Command and Control on built-in keyboard",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_command",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_control" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "left_command" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "right_command",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "right_control" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "right_control",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "right_command" }],
                                 "type": "basic"
                             }
                         ]
