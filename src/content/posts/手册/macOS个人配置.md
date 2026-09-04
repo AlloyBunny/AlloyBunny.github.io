@@ -50,7 +50,7 @@ F5绑定截图，F6绑定贴图
 
 ### 豆包输入法
 
-截止2026.04.12，该输入法还是内测版本，google上能找到。它的语音输入功能完全免费，且延迟非常低，功能很强大，非常推荐。
+强大的语音输入法（但是它的打字输入体验一般）
 
 ## 终端工具类
 
@@ -62,23 +62,19 @@ ghostty, zellij, yazi, micro
 
 ### Karabiner-Elements
 
-深度定制按键映射，我目前分成两组：
+深度定制按键映射：
 
-按住 Caps 时：
+1. 全局交换ctrl和command
+2. Caps+`u/i/n/m`分别映射为 `←/→/↑/↓`
+3. Caps+`u/i/n/m` 分别映射为 `←/→/↑/↓`
+4. Caps+`j/k/l/h` 分别映射为 `Command+←`、`Command+→`、`Command+Shift+←`、`Command+Shift+→`
+5. Caps+`;/9/0` 分别映射为 `:`、`(`、`)`
+6. Caps+`Backspace` 映射为 `Delete`(删除右边字符)
+7. `Home/End` 映射为 `Command+← / Command+→``
+8. ``F1` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
+9. 额外地，对于外接键盘，交换win和alt，让它和MAC的默认键盘位置相同
 
-1. 默认等效于按住 `Command`
-2. `u/i/n/m` 分别映射为 `←/→/↑/↓`
-3. `j/k/l/h` 分别映射为 `Command+←`、`Command+→`、`Command+Shift+←`、`Command+Shift+→`
-4. `;/9/0` 分别映射为 `:`、`(`、`)`
-5. `Backspace` 映射为 `Delete`(删除右边字符)
-
-全局映射（不需要按住Caps）：
-
-1. `Home/End` 映射为 `Command+← / Command+→`
-
-2. `F1` 映射为 `Command+W`，用于快速关闭当前窗口/标签页
-
-   安装：
+安装：
 
 ```bash
 brew install --cask karabiner-elements
@@ -111,9 +107,7 @@ open -a /Applications/Karabiner-Elements.app
                             {
                                 "from": {
                                     "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
@@ -122,11 +116,8 @@ open -a /Applications/Karabiner-Elements.app
                                             "value": 1
                                         }
                                     },
-                                    {
-                                        "key_code": "left_command"
-                                    }
+                                    { "key_code": "left_command" }
                                 ],
-                                "to_if_alone": [{ "key_code": "vk_none" }],
                                 "to_after_key_up": [
                                     {
                                         "set_variable": {
@@ -135,9 +126,17 @@ open -a /Applications/Karabiner-Elements.app
                                         }
                                     }
                                 ],
+                                "to_if_alone": [{ "key_code": "vk_none" }],
                                 "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -145,6 +144,10 @@ open -a /Applications/Karabiner-Elements.app
                                         "optional": ["any"]
                                     }
                                 },
+                                "to": [{ "key_code": "left_arrow" }],
+                                "type": "basic"
+                            },
+                            {
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -152,14 +155,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "from": {
                                     "key_code": "i",
                                     "modifiers": {
@@ -167,6 +162,10 @@ open -a /Applications/Karabiner-Elements.app
                                         "optional": ["any"]
                                     }
                                 },
+                                "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            },
+                            {
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -174,14 +173,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "from": {
                                     "key_code": "n",
                                     "modifiers": {
@@ -189,6 +180,10 @@ open -a /Applications/Karabiner-Elements.app
                                         "optional": ["any"]
                                     }
                                 },
+                                "to": [{ "key_code": "up_arrow" }],
+                                "type": "basic"
+                            },
+                            {
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -196,14 +191,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
-                                "to": [
-                                    {
-                                        "key_code": "up_arrow"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": {
@@ -211,6 +198,10 @@ open -a /Applications/Karabiner-Elements.app
                                         "optional": ["any"]
                                     }
                                 },
+                                "to": [{ "key_code": "down_arrow" }],
+                                "type": "basic"
+                            },
+                            {
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -218,14 +209,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
-                                "to": [
-                                    {
-                                        "key_code": "down_arrow"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
@@ -233,13 +216,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "optional": ["any"]
                                     }
                                 },
-                                "conditions": [
-                                    {
-                                        "name": "caps_nav",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "to": [
                                     {
                                         "key_code": "left_arrow",
@@ -249,6 +225,13 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "name": "caps_nav",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
@@ -256,13 +239,6 @@ open -a /Applications/Karabiner-Elements.app
                                         "optional": ["any"]
                                     }
                                 },
-                                "conditions": [
-                                    {
-                                        "name": "caps_nav",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "to": [
                                     {
                                         "key_code": "right_arrow",
@@ -272,13 +248,6 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -286,6 +255,13 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
                                 "to": [
                                     {
                                         "key_code": "left_arrow",
@@ -295,13 +271,6 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -309,6 +278,13 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
                                 "to": [
                                     {
                                         "key_code": "right_arrow",
@@ -318,13 +294,6 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "semicolon",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -332,6 +301,13 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
                                 "to": [
                                     {
                                         "key_code": "semicolon",
@@ -341,13 +317,6 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "9",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -355,6 +324,13 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
                                 "to": [
                                     {
                                         "key_code": "9",
@@ -364,13 +340,6 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "0",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -378,6 +347,13 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
                                 "to": [
                                     {
                                         "key_code": "0",
@@ -388,33 +364,8 @@ open -a /Applications/Karabiner-Elements.app
                             },
                             {
                                 "from": {
-                                    "key_code": "return_or_enter",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "conditions": [
-                                    {
-                                        "name": "caps_nav",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "to": [
-                                    {
-                                        "key_code": "return_or_enter",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "home",
-                                    "modifiers": {
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
@@ -427,9 +378,7 @@ open -a /Applications/Karabiner-Elements.app
                             {
                                 "from": {
                                     "key_code": "end",
-                                    "modifiers": {
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
@@ -440,13 +389,6 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "delete_or_backspace",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
                                 "conditions": [
                                     {
                                         "name": "caps_nav",
@@ -454,15 +396,20 @@ open -a /Applications/Karabiner-Elements.app
                                         "value": 1
                                     }
                                 ],
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
                                 "to": [{ "key_code": "delete_forward" }],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "f1",
-                                    "modifiers": {
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
@@ -473,51 +420,159 @@ open -a /Applications/Karabiner-Elements.app
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Swap Command and Control on built-in keyboard",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_command" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Swap Command, Control, and Option on external keyboards only",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_option" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_command" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_control" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_option" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_command" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": false }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_control" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
-            "simple_modifications": [
-                {
-                    "from": {
-                        "key_code": "left_command"
-                    },
-                    "to": [
-                        {
-                            "key_code": "left_control"
-                        }
-                    ]
-                },
-                {
-                    "from": {
-                        "key_code": "left_control"
-                    },
-                    "to": [
-                        {
-                            "key_code": "left_command"
-                        }
-                    ]
-                },
-                {
-                    "from": {
-                        "key_code": "right_command"
-                    },
-                    "to": [
-                        {
-                            "key_code": "right_control"
-                        }
-                    ]
-                },
-                {
-                    "from": {
-                        "key_code": "right_control"
-                    },
-                    "to": [
-                        {
-                            "key_code": "right_command"
-                        }
-                    ]
-                }
-            ],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": {
@@ -527,7 +582,6 @@ open -a /Applications/Karabiner-Elements.app
         }
     ]
 }
-
 ```
 
 ### 终端美化
