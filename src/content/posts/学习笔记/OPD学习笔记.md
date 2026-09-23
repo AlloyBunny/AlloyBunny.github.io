@@ -44,13 +44,15 @@ SFT的数据通常来自人类标注/强模型生成后筛选等高质量数据�
 
 # OPD (On-policy distillation，在线蒸馏)
 
-OPD的loss是：$\mathcal{L}_{OPD}=\mathbb{E}_{x\sim\mathcal{D},y\sim\pi_\theta}\left[\sum_tD_{KL}\left(\pi_\theta(\cdot|x,y_{<t})\|\pi_T(\cdot|x,y_{<t})\right)\right]$
+OPD的loss是：$\mathcal{L}_{OPD}=\mathbb{E}_{x\sim\mathcal{D},\hat{y}\sim\pi_\theta}\left[\sum_tD_{KL}\left(\pi_\theta(\cdot|x,\hat{y}_{<t})\|\pi_T(\cdot|x,\hat{y}_{<t})\right)\right]$
 
 它和离线蒸馏的loss区别是，$y$来自$\pi_\theta$而非$\mathcal{D}$，且KL散度从正向的换成的反向的。
 
-## OPD如何解决训推不一致
+## OPD如何解决分布偏移问题
 
-OPD 的核心思想是：不要只在固定的数据轨迹上蒸馏，而是让 student 当前策略自己生成：$\hat{y}\sim \pi_\theta(\cdot|x)$。于是训练状态变成：$hat{s}_t=(x,\hat{y}_{<t})$，也就是 student 自己真实会走到的状态。然后在这些状态上，让 teacher 给出 next-token distribution：$\pi_T(\cdot|\hat{s}_t)$，用于指导蒸馏训练。
+前面讲到离线蒸馏最大的问题是分布偏移，而OPD就是为了解决这个问题而生的。
+
+OPD 的核心思想是：不要只在固定的数据轨迹上蒸馏，而是让 student 当前策略自己生成：$\hat{y}\sim \pi_\theta(\cdot|x)$。然后让$\pi_\theta(\cdot|x,\hat{y}_{<t})$去拟合$\pi_T(\cdot|x,\hat{y}_{<t})$。也就是说，在student自己真实会走的轨迹上，逐token地拟合teacher的分布。
 
 ## OPD对比离线蒸馏/RL的好处
 
@@ -62,6 +64,10 @@ OPD 的核心思想是：不要只在固定的数据轨迹上蒸馏，而是让 
 | **训练稳定性** | 高，但有分布偏移       | 低，方差大         | 高，信号密集       |
 | **样本效率**   | 中等                   | 低                 | 高                 |
 | **典型代价**   | 学生超出训练分布即失效 | 需奖励模型 RM      | 需教师在线推理算力 |
+
+# OPSD (On-Policy Self-Distillation，在线自蒸馏)
+
+OPSD和OPD非常像，唯一的区别在于，把teacher换成了“知道答案的初始student”，即将OPD中的$\pi_T(\cdot|x,\hat{y}_{<t})$换成了$\pi_{\theta_0}(\cdot|x,y^*,\hat{y}_{<t})$，其中$y^*$是query $x$的标准答案，$\pi_{\theta_0}$是初始student模型的参数。
 
 # 附录
 
